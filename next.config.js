@@ -11,6 +11,7 @@ const nextConfig = {
         compilerOptions: {
             paths: {
                 "@/components/*": ["components/*"],
+                "@/data/*": ["data/*"],
             },
         },
     },

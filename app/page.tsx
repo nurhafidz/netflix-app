@@ -1,5 +1,5 @@
 "use client";
-import HeroComponent from "@/components/main-page/Hero";
+import HeroComponent from "@/components/main-page/HeroComponent";
 import { Montserrat } from "@next/font/google";
 import Navbar from "@/components/layout/navbar";
 import { useState, useEffect, Fragment } from "react";
@@ -12,7 +12,7 @@ import {
     getDataCountries,
     getDataGenres,
 } from "@/data/getDataAll.js";
-import MapsComponent from "@/components/main-page/maps.jsx";
+import MapsComponent from "@/components/main-page/MapsComponent.jsx";
 
 const inter = Montserrat({ subsets: ["latin"] });
 

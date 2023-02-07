@@ -34,7 +34,7 @@ const ComboboxComponents = ({
                     />
                     <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
                         <ChevronUpDownIcon
-                            className="h-5 w-5 text-gray-400"
+                            className="w-5 h-5 text-gray-400"
                             aria-hidden="true"
                         />
                     </Combobox.Button>
@@ -46,9 +46,9 @@ const ComboboxComponents = ({
                     leaveTo="opacity-0"
                     afterLeave={() => setQuery("")}
                 >
-                    <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                    <Combobox.Options className="absolute z-20 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                         {filteredData.length === 0 && query !== "" ? (
-                            <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
+                            <div className="relative px-4 py-2 text-gray-700 cursor-default select-none">
                                 Nothing found.
                             </div>
                         ) : (
@@ -84,7 +84,7 @@ const ComboboxComponents = ({
                                                     }`}
                                                 >
                                                     <CheckIcon
-                                                        className="h-5 w-5"
+                                                        className="w-5 h-5"
                                                         aria-hidden="true"
                                                     />
                                                 </span>

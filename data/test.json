@@ -1,0 +1,32 @@
+[
+    {
+        "id": "hack",
+        "label": "hack",
+        "value": 360,
+        "color": "hsl(50, 70%, 50%)"
+    },
+    {
+        "id": "javascript",
+        "label": "javascript",
+        "value": 485,
+        "color": "hsl(277, 70%, 50%)"
+    },
+    {
+        "id": "php",
+        "label": "php",
+        "value": 239,
+        "color": "hsl(66, 70%, 50%)"
+    },
+    {
+        "id": "stylus",
+        "label": "stylus",
+        "value": 72,
+        "color": "hsl(195, 70%, 50%)"
+    },
+    {
+        "id": "haskell",
+        "label": "haskell",
+        "value": 378,
+        "color": "hsl(340, 70%, 50%)"
+    }
+]

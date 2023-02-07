@@ -1,12 +1,5 @@
-const backend_url = "https://movie-app2.coandbox.com";
-const getDataCast = async () => {
-    const res = await fetch(`${backend_url}/casts`);
+const backend_url = "http://103.179.254.94:5000";
 
-    if (!res.ok) {
-        throw new Error("Failed to fetch data");
-    }
-    return res.json();
-};
 const getDataTypes = async () => {
     const res = await fetch(`${backend_url}/types`);
 
@@ -47,6 +40,34 @@ const getDataGenres = async () => {
     }
     return res.json();
 };
+const getDataCast = async () => {
+    const res = await fetch(`${backend_url}/casts`);
+
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+    return res.json();
+};
+
+const getManyData = async () => {
+    let datas;
+    await Promise.all([
+        fetch(`${backend_url}/types`).then((value) => value.json()),
+        fetch(`${backend_url}/ratings`).then((value) => value.json()),
+        fetch(`${backend_url}/directors`).then((value) => value.json()),
+        fetch(`${backend_url}/countries`).then((value) => value.json()),
+        fetch(`${backend_url}/gendres`).then((value) => value.json()),
+        fetch(`${backend_url}/casts`).then((value) => value.json()),
+    ])
+        .then((response) => {
+            datas = response;
+        })
+
+        .catch((err) => {
+            console.log(err);
+        });
+    return datas;
+};
 
 export {
     getDataCast,
@@ -55,4 +76,5 @@ export {
     getDataDirectors,
     getDataCountries,
     getDataGenres,
+    getManyData,
 };

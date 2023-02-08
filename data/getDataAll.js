@@ -1,5 +1,5 @@
-// const backend_url = "http://103.179.254.94:5000";
-const backend_url = "https://lutfianrhdn.me";
+const backend_url = "http://103.179.254.94:5000";
+// const backend_url = "https://lutfianrhdn.me";
 
 const getDataTypes = async () => {
     const res = await fetch(`${backend_url}/types`);

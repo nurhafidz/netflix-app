@@ -70,6 +70,17 @@ const dataMenu = [
     "Cast Movie",
 ];
 
+const anggota = [
+    { nim: "10121127", name: "Lutfian Rahdiansyah" },
+    { nim: "10121137", name: "Darayani Haq" },
+    { nim: "10121142", name: "Asifa Lestari" },
+    { nim: "10121143", name: "Muhamad Fariz Hartawan" },
+    { nim: "10121145", name: "Nurhafidz Muhammad Faizal" },
+    { nim: "10121159", name: "Fitria Rahmawati" },
+];
+
+const backend_url = "http://103.179.254.94:5000";
+
 async function getDataWithFilter(
     url: any,
     filter: any,
@@ -78,11 +89,9 @@ async function getDataWithFilter(
 ) {
     let res;
     if (check) {
-        res = await fetch(`https://lutfianrhdn.me${url}/grafik`);
+        res = await fetch(`${backend_url}${url}/grafik`);
     } else {
-        res = await fetch(
-            `https://lutfianrhdn.me${url}?key=${filter}&value=${value}`
-        );
+        res = await fetch(`${backend_url}${url}?key=${filter}&value=${value}`);
     }
 
     if (!res.ok) {
@@ -90,7 +99,6 @@ async function getDataWithFilter(
     }
     return res.json();
 }
-
 
 const Home = () => {
     const getData = async () => {
@@ -250,7 +258,17 @@ const Home = () => {
     }, []);
 
     if (loading) {
-        return <>sabar ya bang</>;
+        return (
+            <div className="h-screen w-full flex">
+                <div className="m-auto">
+                    <div className="loadingio-spinner-rolling-gd42pr7fwe">
+                        <div className="ldio-tgpi7sfxlu">
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -261,176 +279,156 @@ const Home = () => {
             <div className="w-full h-full">
                 <div className="container mx-auto">
                     <div className="flex w-full justify-center text-2xl font-semibold p-5">
-                        Create Your Pilem
+                        Create Your Movie
                     </div>
-                    <div className="grid grid-cols-2 gap-10">
-                        <div className="">
-                            <div>
-                                <div>Select Filter</div>
-                                <Suspense fallback={<Loading />}>
-                                    {movieData?.menus && (
-                                        <ComboboxComponents
-                                            selectedArr={selected.menu}
-                                            setSelectedArr={(val: any) =>
-                                                setSelectedData(val, "menu")
-                                            }
-                                            query={query}
-                                            setQuery={setQueryData}
-                                            arrData={movieData?.menus}
-                                            namecol="menu"
-                                        />
-                                    )}
-                                </Suspense>
-                            </div>
-                            <div className="mt-5">
-                                {selected.menu == "Director Movie" && (
-                                    <div>
-                                        <div>Director Movie</div>
-                                        <Suspense fallback={<Loading />}>
-                                            {movieData?.directors && (
-                                                <ComboboxComponents
-                                                    selectedArr={
-                                                        selected.director
-                                                    }
-                                                    setSelectedArr={(
-                                                        val: any
-                                                    ) =>
-                                                        setSelectedData(
-                                                            val,
-                                                            "director"
-                                                        )
-                                                    }
-                                                    query={query}
-                                                    setQuery={setQueryData}
-                                                    arrData={movieData?.directors.slice(
-                                                        0,
-                                                        100
-                                                    )}
-                                                    namecol="director"
-                                                />
-                                            )}
-                                        </Suspense>
-                                    </div>
+                    <div className="flex flex-row">
+                        <div className="m-5 w-full">
+                            <div>Select Filter</div>
+                            <Suspense fallback={<Loading />}>
+                                {movieData?.menus && (
+                                    <ComboboxComponents
+                                        selectedArr={selected.menu}
+                                        setSelectedArr={(val: any) =>
+                                            setSelectedData(val, "menu")
+                                        }
+                                        query={query}
+                                        setQuery={setQueryData}
+                                        arrData={movieData?.menus}
+                                        namecol="menu"
+                                    />
                                 )}
-                                {selected.menu == "Country Movie" && (
-                                    <div>
-                                        <div>Country Movie</div>
-                                        <Suspense fallback={<Loading />}>
-                                            {movieData?.directors && (
-                                                <ComboboxComponents
-                                                    selectedArr={
-                                                        selected.country
-                                                    }
-                                                    setSelectedArr={(
-                                                        val: any
-                                                    ) =>
-                                                        setSelectedData(
-                                                            val,
-                                                            "country"
-                                                        )
-                                                    }
-                                                    query={query}
-                                                    setQuery={setQueryData}
-                                                    arrData={movieData?.countries.slice(
-                                                        0,
-                                                        100
-                                                    )}
-                                                    namecol="country"
-                                                />
-                                            )}
-                                        </Suspense>
-                                    </div>
-                                )}
-                                {selected.menu == "Genre Movie" && (
-                                    <div>
-                                        <div>Genre Movie</div>
-                                        <ComboboxComponents
-                                            selectedArr={selected.genre}
-                                            setSelectedArr={(val: any) =>
-                                                setSelectedData(val, "genre")
-                                            }
-                                            query={query}
-                                            setQuery={setQueryData}
-                                            arrData={movieData?.genres.slice(
-                                                0,
-                                                100
-                                            )}
-                                            namecol="genre"
-                                        />
-                                    </div>
-                                )}
-                                {selected.menu == "Type Movie" && (
-                                    <div>
-                                        <div>Type Movie</div>
-                                        <ComboboxComponents
-                                            selectedArr={selected.type}
-                                            setSelectedArr={(val: any) =>
-                                                setSelectedData(val, "type")
-                                            }
-                                            query={query}
-                                            setQuery={setQueryData}
-                                            arrData={movieData?.types.slice(
-                                                0,
-                                                100
-                                            )}
-                                            namecol="type"
-                                        />
-                                    </div>
-                                )}
-                                {selected.menu == "Rating Movie" && (
-                                    <div>
-                                        <div>Rating Movie</div>
-                                        <ComboboxComponents
-                                            selectedArr={selected.rating}
-                                            setSelectedArr={(val: any) =>
-                                                setSelectedData(val, "rating")
-                                            }
-                                            query={query}
-                                            setQuery={setQueryData}
-                                            arrData={movieData?.ratings}
-                                            namecol="rating"
-                                        />
-                                    </div>
-                                )}
-                                {selected.menu == "Cast Movie" && (
-                                    <div>
-                                        <div>Cast Movie</div>
-                                        <ComboboxComponents
-                                            selectedArr={selected.cast}
-                                            setSelectedArr={(val: any) =>
-                                                setSelectedData(val, "cast")
-                                            }
-                                            query={query}
-                                            setQuery={setQueryData}
-                                            arrData={movieData?.casts.slice(
-                                                0,
-                                                100
-                                            )}
-                                            namecol="cast"
-                                        />
-                                    </div>
-                                )}
-                            </div>
-                            <div className="flex w-full justify-end items-end mt-5">
-                                <button
-                                    type="button"
-                                    className=" px-5 py-2 bg-[#6D8B74] text-white rounded"
-                                    onClick={() => {
-                                        findMovie(
-                                            activeMenu,
-                                            selected[
-                                                activeMenu as keyof typeof selected
-                                            ]
-                                        );
-                                    }}
-                                >
-                                    Find
-                                </button>
-                            </div>
+                            </Suspense>
                         </div>
-                        <div className="h-full w-full bg-gray-200 rounded p-5">
-                            result
-                            <div>{result}</div>
+                        <div className="m-5 w-full">
+                            {selected.menu == "Director Movie" && (
+                                <div>
+                                    <div>Director Movie</div>
+                                    <Suspense fallback={<Loading />}>
+                                        {movieData?.directors && (
+                                            <ComboboxComponents
+                                                selectedArr={selected.director}
+                                                setSelectedArr={(val: any) =>
+                                                    setSelectedData(
+                                                        val,
+                                                        "director"
+                                                    )
+                                                }
+                                                query={query}
+                                                setQuery={setQueryData}
+                                                arrData={movieData?.directors.slice(
+                                                    0,
+                                                    100
+                                                )}
+                                                namecol="director"
+                                            />
+                                        )}
+                                    </Suspense>
+                                </div>
+                            )}
+                            {selected.menu == "Country Movie" && (
+                                <div>
+                                    <div>Country Movie</div>
+                                    <Suspense fallback={<Loading />}>
+                                        {movieData?.directors && (
+                                            <ComboboxComponents
+                                                selectedArr={selected.country}
+                                                setSelectedArr={(val: any) =>
+                                                    setSelectedData(
+                                                        val,
+                                                        "country"
+                                                    )
+                                                }
+                                                query={query}
+                                                setQuery={setQueryData}
+                                                arrData={movieData?.countries.slice(
+                                                    0,
+                                                    100
+                                                )}
+                                                namecol="country"
+                                            />
+                                        )}
+                                    </Suspense>
+                                </div>
+                            )}
+                            {selected.menu == "Genre Movie" && (
+                                <div>
+                                    <div>Genre Movie</div>
+                                    <ComboboxComponents
+                                        selectedArr={selected.genre}
+                                        setSelectedArr={(val: any) =>
+                                            setSelectedData(val, "genre")
+                                        }
+                                        query={query}
+                                        setQuery={setQueryData}
+                                        arrData={movieData?.genres.slice(
+                                            0,
+                                            100
+                                        )}
+                                        namecol="genre"
+                                    />
+                                </div>
+                            )}
+                            {selected.menu == "Type Movie" && (
+                                <div>
+                                    <div>Type Movie</div>
+                                    <ComboboxComponents
+                                        selectedArr={selected.type}
+                                        setSelectedArr={(val: any) =>
+                                            setSelectedData(val, "type")
+                                        }
+                                        query={query}
+                                        setQuery={setQueryData}
+                                        arrData={movieData?.types.slice(0, 100)}
+                                        namecol="type"
+                                    />
+                                </div>
+                            )}
+                            {selected.menu == "Rating Movie" && (
+                                <div>
+                                    <div>Rating Movie</div>
+                                    <ComboboxComponents
+                                        selectedArr={selected.rating}
+                                        setSelectedArr={(val: any) =>
+                                            setSelectedData(val, "rating")
+                                        }
+                                        query={query}
+                                        setQuery={setQueryData}
+                                        arrData={movieData?.ratings}
+                                        namecol="rating"
+                                    />
+                                </div>
+                            )}
+                            {selected.menu == "Cast Movie" && (
+                                <div>
+                                    <div>Cast Movie</div>
+                                    <ComboboxComponents
+                                        selectedArr={selected.cast}
+                                        setSelectedArr={(val: any) =>
+                                            setSelectedData(val, "cast")
+                                        }
+                                        query={query}
+                                        setQuery={setQueryData}
+                                        arrData={movieData?.casts.slice(0, 100)}
+                                        namecol="cast"
+                                    />
+                                </div>
+                            )}
+                        </div>
+                        <div className="flex justify-center items-center mt-5">
+                            <button
+                                type="button"
+                                className=" px-5 py-2 bg-[#6D8B74] text-white rounded"
+                                onClick={() => {
+                                    findMovie(
+                                        activeMenu,
+                                        selected[
+                                            activeMenu as keyof typeof selected
+                                        ]
+                                    );
+                                }}
+                            >
+                                Find
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -541,14 +539,16 @@ const Home = () => {
             <div className="m-5 container mx-auto">
                 <div className="text-center mb-5">Our Team</div>
                 <div className="grid grid-cols-3 gap-5 justify-items-center">
-                    {[...Array(6)].map((x, i) => (
+                    {anggota.map((x, i) => (
                         <div
                             key={i}
                             className="text-sm flex justify-center flex-col items-center"
                         >
-                            <div className="bg-gray-500 rounded-full h-24 w-24 flex justify-center mb-3"></div>
-                            <div className="text-center">10121145</div>
-                            <div>Hafizah</div>
+                            <div className="bg-gray-500 rounded-full h-24 w-24 flex justify-center mb-3 items-center text-white font-semibold text-xl">
+                                {x.name.substring(0, 1)}
+                            </div>
+                            <div className="text-center">{x.nim}</div>
+                            <div>{x.name}</div>
                         </div>
                     ))}
                 </div>

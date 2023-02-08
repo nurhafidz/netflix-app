@@ -1,4 +1,5 @@
-const backend_url = "http://103.179.254.94:5000";
+// const backend_url = "http://103.179.254.94:5000";
+const backend_url = "https://lutfianrhdn.me";
 
 const getDataTypes = async () => {
     const res = await fetch(`${backend_url}/types`);
@@ -69,6 +70,55 @@ const getManyData = async () => {
     return datas;
 };
 
+const getTypeGraph = async () => {
+    const res = await fetch(`${backend_url}/types/grafik`);
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+};
+const getRatingGraph = async () => {
+    const res = await fetch(`${backend_url}/ratings/grafik`);
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+};
+const getGenreGraph = async () => {
+    const res = await fetch(`${backend_url}/gendres/grafik`);
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+};
+const getCountriesGraph = async () => {
+    const res = await fetch(`${backend_url}/countries/grafik`);
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+};
+const getDirectorsGraph = async () => {
+    const res = await fetch(`${backend_url}/directors/grafik`);
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+};
+const getCastsGraph = async () => {
+    const res = await fetch(`${backend_url}/casts/grafik`);
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+};
+
 export {
     getDataCast,
     getDataTypes,
@@ -77,4 +127,10 @@ export {
     getDataCountries,
     getDataGenres,
     getManyData,
+    getTypeGraph,
+    getRatingGraph,
+    getGenreGraph,
+    getCountriesGraph,
+    getDirectorsGraph,
+    getCastsGraph,
 };

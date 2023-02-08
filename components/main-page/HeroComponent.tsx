@@ -19,13 +19,13 @@ const HeroComponent = () => {
                         }}
                     >
                         <div className="flex flex-row justify-center items-center text-white mt-5">
-                            <div className="p-5 font-semibold font-serif text-3xl">
+                            <div className="p-5 font-semibold font-serif text-5xl">
                                 Produce
                             </div>
                             <div className="px-5 font-semibold font-serif border-b">
                                 Your
                             </div>
-                            <div className="p-5 font-semibold font-serif text-3xl">
+                            <div className="p-5 font-semibold font-serif text-5xl">
                                 Movie
                             </div>
                         </div>

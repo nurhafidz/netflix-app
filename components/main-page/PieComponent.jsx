@@ -1,20 +1,5 @@
 import { ResponsivePie } from "@nivo/pie";
 
-const data = [
-    {
-        color: "rgb(241, 196, 15)",
-        id: "Movie",
-        label: "Movie",
-        value: 5185,
-    },
-    {
-        color: "hsl(277, 70%, 50%)",
-        id: "TV Show",
-        label: "TV Show",
-        value: 147,
-    },
-];
-
 const CenteredMetric = ({ dataWithArc, centerX, centerY }) => {
     let total = 0;
     dataWithArc.forEach((datum) => {
@@ -36,17 +21,34 @@ const CenteredMetric = ({ dataWithArc, centerX, centerY }) => {
     );
 };
 
-const PieComponent = () => {
+const PieComponent = ({ data }) => {
+    let finalData;
+    if (data.length > 5) {
+        const sortedData = data.sort((a, b) => b.value - a.value);
+        const topFive = sortedData.slice(0, 5);
+        const otherData = sortedData.slice(5);
+
+        const combinedOtherData = {
+            color: "rgb(100, 100, 100)",
+            id: "Other",
+            label: "Other",
+            value: otherData.reduce((sum, item) => sum + item.value, 0),
+        };
+        finalData = [...topFive, combinedOtherData];
+    } else {
+        finalData = data;
+    }
+
     return (
         <>
             <ResponsivePie
-                data={data}
+                data={finalData}
                 margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                 innerRadius={0.75}
                 padAngle={0.7}
-                cornerRadius={3}
+                cornerRadius={0}
                 activeOuterRadiusOffset={8}
-                colors={{ scheme: "category10" }}
+                colors={{ scheme: "yellow_green" }}
                 borderWidth={1}
                 arcLinkLabel={(d) => `${d.id} (${d.formattedValue})`}
                 borderColor={{
@@ -68,26 +70,6 @@ const PieComponent = () => {
                     "arcLinkLabels",
                     "legends",
                     CenteredMetric,
-                ]}
-                defs={[
-                    {
-                        id: "dots",
-                        type: "patternDots",
-                        background: "inherit",
-                        color: "rgba(255, 255, 255, 0.3)",
-                        size: 4,
-                        padding: 1,
-                        stagger: true,
-                    },
-                    {
-                        id: "lines",
-                        type: "patternLines",
-                        background: "inherit",
-                        color: "rgba(255, 255, 255, 0.3)",
-                        rotation: -45,
-                        lineWidth: 6,
-                        spacing: 10,
-                    },
                 ]}
                 legends={[
                     {

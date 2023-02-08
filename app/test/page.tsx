@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
-import PieComponent from "@/components/main-page/PieComponent.jsx";
+import HeatMapComponent from "@/components/main-page/HeatMapComponent.jsx";
+import BarChartComponent from "@/components/main-page/BarChartComponent.jsx";
 import data from "@/data/test.json";
 
 // import { getManyData } from "@/data/getDataAll.js";
@@ -15,7 +16,8 @@ const page = () => {
     return (
         <div className="h-screen">
             data
-            <PieComponent />
+            <HeatMapComponent />
+            {/* <BarChartComponent /> */}
         </div>
     );
 };

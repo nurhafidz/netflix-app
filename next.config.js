@@ -14,6 +14,9 @@ const nextConfig = {
                 "@/data/*": ["data/*"],
             },
         },
+        images: {
+            domains: ["cdn.discordapp.com", "avatars.githubusercontent.com"],
+        },
     },
 };
 

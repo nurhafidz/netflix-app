@@ -18,6 +18,7 @@ import Loading from "./loading";
 import PieComponent from "@/components/main-page/PieComponent.jsx";
 import HorizontalBarChartComponent from "@/components/main-page/HorizontalBarChartComponent.jsx";
 import BarChartComponent from "@/components/main-page/BarChartComponent.jsx";
+import Image from "next/image";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -71,12 +72,36 @@ const dataMenu = [
 ];
 
 const anggota = [
-    { nim: "10121127", name: "Lutfian Rahdiansyah" },
-    { nim: "10121137", name: "Darayani Haq" },
-    { nim: "10121142", name: "Asifa Lestari" },
-    { nim: "10121143", name: "Muhamad Fariz Hartawan" },
-    { nim: "10121145", name: "Nurhafidz Muhammad Faizal" },
-    { nim: "10121159", name: "Fitria Rahmawati" },
+    {
+        nim: "10121127",
+        name: "Lutfian Rahdiansyah",
+        image: "https://cdn.discordapp.com/attachments/1034295791201812613/1073106983609184266/IMG_20221127_161613_233.webp",
+    },
+    {
+        nim: "10121137",
+        name: "Darayani Haq",
+        image: "https://cdn.discordapp.com/attachments/1039139785912107019/1073107060939567205/IMG_20220720_121424-removebg-preview_1.png",
+    },
+    {
+        nim: "10121142",
+        name: "Asifa Lestari",
+        image: "https://cdn.discordapp.com/attachments/1038496628455243808/1073107039292760095/IMG_20211223_095705.png",
+    },
+    {
+        nim: "10121143",
+        name: "Muhamad Fariz Hartawan",
+        image: "https://cdn.discordapp.com/attachments/1038724684704907284/1073107102140211261/IMG_20221122_222432_343.jpg",
+    },
+    {
+        nim: "10121145",
+        name: "Nurhafidz Muhammad Faizal",
+        image: "https://avatars.githubusercontent.com/u/52746313?v=4",
+    },
+    {
+        nim: "10121159",
+        name: "Fitria Rahmawati",
+        image: "https://cdn.discordapp.com/attachments/1038705728518623243/1073107066497028126/3x4_pangsi.jpg",
+    },
 ];
 
 const backend_url = "http://103.179.254.94:5000";
@@ -259,7 +284,7 @@ const Home = () => {
 
     if (loading) {
         return (
-            <div className="h-screen w-full flex">
+            <div className="flex w-full h-screen">
                 <div className="m-auto">
                     <div className="loadingio-spinner-rolling-gd42pr7fwe">
                         <div className="ldio-tgpi7sfxlu">
@@ -278,11 +303,11 @@ const Home = () => {
 
             <div className="w-full h-full">
                 <div className="container mx-auto">
-                    <div className="flex w-full justify-center text-2xl font-semibold p-5">
+                    <div className="flex justify-center w-full p-5 text-2xl font-semibold">
                         Create Your Movie
                     </div>
                     <div className="flex flex-row">
-                        <div className="m-5 w-full">
+                        <div className="w-full m-5">
                             <div>Select Filter</div>
                             <Suspense fallback={<Loading />}>
                                 {movieData?.menus && (
@@ -299,7 +324,7 @@ const Home = () => {
                                 )}
                             </Suspense>
                         </div>
-                        <div className="m-5 w-full">
+                        <div className="w-full m-5">
                             {selected.menu == "Director Movie" && (
                                 <div>
                                     <div>Director Movie</div>
@@ -414,7 +439,7 @@ const Home = () => {
                                 </div>
                             )}
                         </div>
-                        <div className="flex justify-center items-center mt-5">
+                        <div className="flex items-center justify-center mt-5">
                             <button
                                 type="button"
                                 className=" px-5 py-2 bg-[#6D8B74] text-white rounded"
@@ -435,7 +460,7 @@ const Home = () => {
             </div>
 
             <div className="container mx-auto mt-5">
-                <div className="text-center p-5 font-semibold text-2xl">
+                <div className="p-5 text-2xl font-semibold text-center">
                     Maps Country About Movie
                 </div>
                 <div className="w-full h-[80vh]">
@@ -443,16 +468,16 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="w-full h-full container mx-auto">
+            <div className="container w-full h-full mx-auto">
                 <div className="w-full h-[50vh] grid grid-cols-3 bg-gray-200 mb-5 p-5 rounded">
-                    <div className="h-full flex justify-center items-center flex-col">
-                        <div className="flex-row flex items-end">
+                    <div className="flex flex-col items-center justify-center h-full">
+                        <div className="flex flex-row items-end">
                             <div className="text-5xl font-bold">10</div>
-                            <div className=" font-semibold text-m">
+                            <div className="font-semibold text-m">
                                 Highest in the Country
                             </div>
                         </div>
-                        <div className="w-full flex justify-center font-semibold text-m">
+                        <div className="flex justify-center w-full font-semibold text-m">
                             is the best who made it{" "}
                         </div>
                     </div>
@@ -465,7 +490,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="grid grid-cols-3 gap-5 mb-5">
-                    <div className="rounded border w-full h-full p-5">
+                    <div className="w-full h-full p-5 border rounded">
                         <div className="border-b">Analysis of Type</div>
                         <div className=" h-80">
                             {typesGraph?.data != undefined && (
@@ -473,7 +498,7 @@ const Home = () => {
                             )}
                         </div>
                     </div>
-                    <div className="rounded border w-full h-full p-5">
+                    <div className="w-full h-full p-5 border rounded">
                         <div className="border-b">Analysis of Genre</div>
                         <div>
                             some of the genres that are like it at this time
@@ -490,7 +515,7 @@ const Home = () => {
                             )}
                         </div>
                     </div>
-                    <div className="rounded border w-full h-full p-5">
+                    <div className="w-full h-full p-5 border rounded">
                         <div className="border-b">Analysis of Rating</div>
                         <div className=" h-80">
                             {ratingGraph?.data != undefined && (
@@ -502,9 +527,9 @@ const Home = () => {
             </div>
             <div className="">
                 <div className="w-full h-[50vh] grid grid-cols-3 bg-gray-200 mb-5 p-5 rounded">
-                    <div className="h-full flex justify-center items-center flex-col">
-                        <div className="flex-row flex items-end">
-                            <div className=" font-semibold text-m">
+                    <div className="flex flex-col items-center justify-center h-full">
+                        <div className="flex flex-row items-end">
+                            <div className="font-semibold text-m">
                                 The director who is best in production it
                             </div>
                         </div>
@@ -520,9 +545,9 @@ const Home = () => {
                     </div>
                 </div>
                 {/* <div className="w-full h-[50vh] grid grid-cols-3 bg-gray-200 mb-5 p-5 rounded">
-                    <div className="h-full flex justify-center items-center flex-col">
-                        <div className="flex-row flex items-end">
-                            <div className=" font-semibold text-m">
+                    <div className="flex flex-col items-center justify-center h-full">
+                        <div className="flex flex-row items-end">
+                            <div className="font-semibold text-m">
                                 The director who is best in production it
                             </div>
                         </div>
@@ -536,16 +561,23 @@ const Home = () => {
                     </div>
                 </div> */}
             </div>
-            <div className="m-5 container mx-auto">
-                <div className="text-center mb-5">Our Team</div>
+            <div className="container m-5 mx-auto">
+                <div className="mb-5 text-center">Our Team</div>
                 <div className="grid grid-cols-3 gap-5 justify-items-center">
                     {anggota.map((x, i) => (
                         <div
                             key={i}
-                            className="text-sm flex justify-center flex-col items-center"
+                            className="flex flex-col items-center justify-center text-sm"
                         >
-                            <div className="bg-gray-500 rounded-full h-24 w-24 flex justify-center mb-3 items-center text-white font-semibold text-xl">
-                                {x.name.substring(0, 1)}
+                            <div className="relative w-24 h-24">
+                                <img
+                                    className="object-cover w-24 h-24 rounded-full"
+                                    src={x.image}
+                                    width={500}
+                                    height={500}
+                                    alt={x.name}
+                                />
+                                {/* {x.name.substring(0, 1)} */}
                             </div>
                             <div className="text-center">{x.nim}</div>
                             <div>{x.name}</div>
